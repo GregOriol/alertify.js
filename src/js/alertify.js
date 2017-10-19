@@ -404,32 +404,32 @@
 
             theme: function (themeStr) {
                 switch (themeStr.toLowerCase()) {
-                    case "bootstrap":
-                        this.dialogs.buttons.ok = "<button class='ok btn btn-primary' tabindex='1'>{{ok}}</button>";
-                        this.dialogs.buttons.cancel = "<button class='cancel btn btn-default' tabindex='2'>{{cancel}}</button>";
-                        this.dialogs.input = "<input type='text' class='form-control'>";
-                        break;
-                    case "purecss":
-                        this.dialogs.buttons.ok = "<button class='ok pure-button' tabindex='1'>{{ok}}</button>";
-                        this.dialogs.buttons.cancel = "<button class='cancel pure-button' tabindex='2'>{{cancel}}</button>";
-                        break;
-                    case "mdl":
-                    case "material-design-light":
-                        this.dialogs.buttons.ok = "<button class='ok mdl-button mdl-js-button mdl-js-ripple-effect'  tabindex='1'>{{ok}}</button>";
-                        this.dialogs.buttons.cancel = "<button class='cancel mdl-button mdl-js-button mdl-js-ripple-effect' tabindex='2'>{{cancel}}</button>";
-                        this.dialogs.input = "<div class='mdl-textfield mdl-js-textfield'><input class='mdl-textfield__input'><label class='md-textfield__label'></label></div>";
-                        break;
-                    case "angular-material":
-                        this.dialogs.buttons.ok = "<button class='ok md-primary md-button' tabindex='1'>{{ok}}</button>";
-                        this.dialogs.buttons.cancel = "<button class='cancel md-button' tabindex='2'>{{cancel}}</button>";
-                        this.dialogs.input = "<div layout='column'><md-input-container md-no-float><input type='text'></md-input-container></div>";
-                        break;
-                    case "default":
-                    default:
-                        this.dialogs.buttons.ok = this.defaultDialogs.buttons.ok;
-                        this.dialogs.buttons.cancel = this.defaultDialogs.buttons.cancel;
-                        this.dialogs.input = this.defaultDialogs.input;
-                        break;
+                case "bootstrap":
+                    this.dialogs.buttons.ok = "<button class='ok btn btn-primary' tabindex='1'>{{ok}}</button>";
+                    this.dialogs.buttons.cancel = "<button class='cancel btn btn-default' tabindex='2'>{{cancel}}</button>";
+                    this.dialogs.input = "<input type='text' class='form-control'>";
+                    break;
+                case "purecss":
+                    this.dialogs.buttons.ok = "<button class='ok pure-button' tabindex='1'>{{ok}}</button>";
+                    this.dialogs.buttons.cancel = "<button class='cancel pure-button' tabindex='2'>{{cancel}}</button>";
+                    break;
+                case "mdl":
+                case "material-design-light":
+                    this.dialogs.buttons.ok = "<button class='ok mdl-button mdl-js-button mdl-js-ripple-effect'  tabindex='1'>{{ok}}</button>";
+                    this.dialogs.buttons.cancel = "<button class='cancel mdl-button mdl-js-button mdl-js-ripple-effect' tabindex='2'>{{cancel}}</button>";
+                    this.dialogs.input = "<div class='mdl-textfield mdl-js-textfield'><input class='mdl-textfield__input'><label class='md-textfield__label'></label></div>";
+                    break;
+                case "angular-material":
+                    this.dialogs.buttons.ok = "<button class='ok md-primary md-button' tabindex='1'>{{ok}}</button>";
+                    this.dialogs.buttons.cancel = "<button class='cancel md-button' tabindex='2'>{{cancel}}</button>";
+                    this.dialogs.input = "<div layout='column'><md-input-container md-no-float><input type='text'></md-input-container></div>";
+                    break;
+                case "default":
+                default:
+                    this.dialogs.buttons.ok = this.defaultDialogs.buttons.ok;
+                    this.dialogs.buttons.cancel = this.defaultDialogs.buttons.cancel;
+                    this.dialogs.input = this.defaultDialogs.input;
+                    break;
                 }
             },
 
