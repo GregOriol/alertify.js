@@ -103,7 +103,13 @@
             build: function (item) {
 
                 var btnTxt = this.dialogs.buttons.ok;
-                var html = "<div class='dialog'>" + "<div>" + this.dialogs.message.replace("{{message}}", item.message);
+                var html = "<div class='dialog'>" + "<div>";
+
+                if (item.message.charAt(0) === "<") {
+                    html += item.message;
+                } else {
+                    html += this.dialogs.message.replace("{{message}}", item.message);
+                }
 
                 if (item.type === "confirm" || item.type === "prompt") {
                     btnTxt = this.dialogs.buttons.cancel + this.dialogs.buttons.ok;
