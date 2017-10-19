@@ -21,7 +21,30 @@
 
         // Fallback for no transitions.
         setTimeout(removeThis, TRANSITION_FALLBACK_DURATION);
+    };
 
+    var serializeArray = function (form) {
+        var field, l, s = [];
+
+        if (typeof form === "object" && form.nodeName === "FORM") {
+            var len = form.elements.length;
+            for (var i = 0; i < len; i++) {
+                field = form.elements[i];
+                if (field.name && !field.disabled && field.type !== "file" && field.type !== "reset" && field.type !== "submit" && field.type !== "button") {
+                    if (field.type === "select-multiple") {
+                        l = form.elements[i].options.length;
+                        for (var j = 0; j < l; j++) {
+                            if (field.options[j].selected)
+                                s[s.length] = {name: field.name, value: field.options[j].value};
+                        }
+                    } else if ((field.type !== "checkbox" && field.type !== "radio") || field.checked) {
+                        s[s.length] = {name: field.name, value: field.value};
+                    }
+                }
+            }
+        }
+
+        return s;
     };
 
     function Alertify() {
@@ -249,6 +272,7 @@
 
                 var btnOK = el.querySelector(".ok");
                 var btnCancel = el.querySelector(".cancel");
+                var form = el.querySelector("form");
                 var input = el.querySelector("input");
                 var label = el.querySelector("label");
 
@@ -270,7 +294,7 @@
                 document.addEventListener("keyup", handleEscKey);
 
                 // Set default value/placeholder of input
-                if (input) {
+                if (!form && input) {
                     if (typeof this.promptPlaceholder === "string") {
                         // Set the label, if available, for MDL, etc.
                         if (label) {
@@ -286,7 +310,7 @@
 
                 function isPrompt() {
                     return (
-                        input &&
+                        !form && input &&
                         item.type &&
                         item.type === "prompt"
                     );
@@ -310,14 +334,22 @@
                             }
 
                             if (item.onOkay && "function" === typeof item.onOkay) {
-                                if (input) {
+                                if (form) {
+                                    item.onOkay(serializeArray(form), ev);
+                                } else if (input) {
                                     item.onOkay(input.value, ev);
                                 } else {
                                     item.onOkay(ev);
                                 }
                             }
 
-                            if (input) {
+                            if (form) {
+                                resolve({
+                                    buttonClicked: "ok",
+                                    inputValue: serializeArray(form),
+                                    event: ev
+                                });
+                            } else if (input) {
                                 resolve({
                                     buttonClicked: "ok",
                                     inputValue: input.value,
@@ -349,7 +381,7 @@
                         });
                     }
 
-                    if (input) {
+                    if (!form && input) {
                         input.addEventListener("keyup", function (ev) {
                             if (ev.which === 13) {
                                 btnOK.click();
