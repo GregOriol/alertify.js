@@ -1,5 +1,18 @@
+# System, IDE, ...
+.DS_Store
+.idea
+.vagrant
+.bundle
+
+# SASS
+.sass-cache
+
+# Node
 node_modules/
-.idea/
+
+# Bower
 bower_components
+
+# Tests
 *.log
 coverage/
