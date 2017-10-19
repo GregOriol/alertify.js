@@ -27,7 +27,7 @@
     function Alertify() {
 
         /**
-         * Alertify private object
+         * Alertify private object.
          * @type {Object}
          */
         var _alertify = {
@@ -71,11 +71,11 @@
             },
 
             /**
-             * Build the proper message box
+             * Build the proper message box.
              *
-             * @param  {Object} item    Current object in the queue
+             * @param  {Object} item    Current object in the queue.
              *
-             * @return {String}         An HTML string of the message box
+             * @return {String}         An HTML string of the message box.
              */
             build: function (item) {
 
@@ -104,10 +104,10 @@
             },
 
             /**
-             * Close the log messages
+             * Close the log messages.
              *
-             * @param  {Object} elem    HTML Element of log message to close
-             * @param  {Number} wait    [optional] Time (in ms) to wait before automatically hiding the message, if 0 never hide
+             * @param  {Object} elem    HTML Element of log message to close.
+             * @param  {Number} wait    [optional] Time (in ms) to wait before automatically hiding the message, if 0 never hide.
              *
              * @return {undefined}
              */
@@ -132,13 +132,13 @@
             },
 
             /**
-             * Create a dialog box
+             * Create a dialog box.
              *
-             * @param  {String}   message      The message passed from the callee
-             * @param  {String}   type         Type of dialog to create
+             * @param  {String}   message      The message passed from the callee.
+             * @param  {String}   type         Type of dialog to create.
              * @param  {Function} onOkay       [Optional] Callback function when clicked okay.
              * @param  {Function} onCancel     [Optional] Callback function when cancelled.
-             * @param  {Function} isValid      [Optional] Validate function for prompts
+             * @param  {Function} isValid      [Optional] Validate function for prompts.
              *
              * @return {Object}
              */
@@ -153,11 +153,11 @@
             },
 
             /**
-             * Show a new log message box
+             * Show a new log message box.
              *
-             * @param  {String} message    The message passed from the callee
-             * @param  {String} type       [Optional] Optional type of log message
-             * @param  {Number} wait       [Optional] Time (in ms) to wait before auto-hiding the log
+             * @param  {String}   message    The message passed from the callee.
+             * @param  {String}   type       [Optional] Optional type of log message.
+             * @param  {Function} click      [Optional] Callback function when clicked.
              *
              * @return {Object}
              */
@@ -200,13 +200,13 @@
             },
 
             /**
-             * Add new log message
+             * Add new log message.
              * If a type is passed, a class name "{type}" will get added.
              * This allows for custom look and feel for various types of notifications.
              *
-             * @param  {String} message    The message passed from the callee
-             * @param  {String} type       [Optional] Type of log message
-             * @param  {Number} wait       [Optional] Time (in ms) to wait before auto-hiding
+             * @param  {String}   message  The message passed from the callee.
+             * @param  {String}   type     [Optional] Type of log message.
+             * @param  {Function} click    [Optional] Callback function when clicked.
              *
              * @return {undefined}
              */
@@ -237,7 +237,7 @@
             },
 
             /**
-             * Initiate all the required pieces for the dialog box
+             * Initiate all the required pieces for the dialog box.
              *
              * @return {undefined}
              */
