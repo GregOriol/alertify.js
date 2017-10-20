@@ -314,6 +314,11 @@
                     }
                 }
 
+                // Prevent form submit
+                if (form) {
+                    form.addEventListener("submit", function (e) { e.preventDefault(); });
+                }
+
                 function isPrompt() {
                     return (
                         !form && input &&
