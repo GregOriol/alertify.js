@@ -74,10 +74,10 @@
             dialogs: {
                 buttons: {
                     holder: "<nav>{{buttons}}</nav>",
-                    ok: "<button class='ok' tabindex='1'>{{ok}}</button>",
-                    cancel: "<button class='cancel' tabindex='2'>{{cancel}}</button>"
+                    ok: "<button class='ok' tabindex='2'>{{ok}}</button>",
+                    cancel: "<button class='cancel' tabindex='3'>{{cancel}}</button>"
                 },
-                input: "<input type='text'>",
+                input: "<input type='text' tabindex='1'>",
                 message: "<p class='msg'>{{message}}</p>",
                 log: "<div class='{{class}}'>{{message}}</div>"
             },
@@ -85,10 +85,10 @@
             defaultDialogs: {
                 buttons: {
                     holder: "<nav>{{buttons}}</nav>",
-                    ok: "<button class='ok' tabindex='1'>{{ok}}</button>",
-                    cancel: "<button class='cancel' tabindex='2'>{{cancel}}</button>"
+                    ok: "<button class='ok' tabindex='2'>{{ok}}</button>",
+                    cancel: "<button class='cancel' tabindex='3'>{{cancel}}</button>"
                 },
-                input: "<input type='text'>",
+                input: "<input type='text' tabindex='1'>",
                 message: "<p class='msg'>{{message}}</p>",
                 log: "<div class='{{class}}'>{{message}}</div>"
             },
@@ -319,6 +319,16 @@
                     form.addEventListener("submit", function (e) { e.preventDefault(); });
                 }
 
+                // Attempt
+                if (form || input) {
+                    var formEls = form.querySelectorAll("input,select,textarea");
+                    for (var i = 0; i < formEls.length; i++) {
+                        if (!formEls[i].hasAttribute("tabindex")) {
+                            formEls[i].setAttribute("tabindex", "1");
+                        }
+                    }
+                }
+
                 function isPrompt() {
                     return (
                         !form && input &&
@@ -412,7 +422,11 @@
                 this.parent.appendChild(el);
                 setTimeout(function () {
                     el.classList.remove("hide");
-                    if (isPrompt()) {
+                    if (form) {
+                        var input = form.querySelector("input,select,textarea");
+                        input.select();
+                        input.focus();
+                    } else if (input) {
                         input.select();
                         input.focus();
                     } else {
@@ -448,23 +462,23 @@
             theme: function (themeStr) {
                 switch (themeStr.toLowerCase()) {
                 case "bootstrap":
-                    this.dialogs.buttons.ok = "<button class='ok btn btn-primary' tabindex='1'>{{ok}}</button>";
-                    this.dialogs.buttons.cancel = "<button class='cancel btn btn-default' tabindex='2'>{{cancel}}</button>";
+                    this.dialogs.buttons.ok = "<button class='ok btn btn-primary' tabindex='2'>{{ok}}</button>";
+                    this.dialogs.buttons.cancel = "<button class='cancel btn btn-default' tabindex='3'>{{cancel}}</button>";
                     this.dialogs.input = "<input type='text' class='form-control'>";
                     break;
                 case "purecss":
-                    this.dialogs.buttons.ok = "<button class='ok pure-button' tabindex='1'>{{ok}}</button>";
-                    this.dialogs.buttons.cancel = "<button class='cancel pure-button' tabindex='2'>{{cancel}}</button>";
+                    this.dialogs.buttons.ok = "<button class='ok pure-button' tabindex='2'>{{ok}}</button>";
+                    this.dialogs.buttons.cancel = "<button class='cancel pure-button' tabindex='3'>{{cancel}}</button>";
                     break;
                 case "mdl":
                 case "material-design-light":
-                    this.dialogs.buttons.ok = "<button class='ok mdl-button mdl-js-button mdl-js-ripple-effect'  tabindex='1'>{{ok}}</button>";
-                    this.dialogs.buttons.cancel = "<button class='cancel mdl-button mdl-js-button mdl-js-ripple-effect' tabindex='2'>{{cancel}}</button>";
+                    this.dialogs.buttons.ok = "<button class='ok mdl-button mdl-js-button mdl-js-ripple-effect'  tabindex='2'>{{ok}}</button>";
+                    this.dialogs.buttons.cancel = "<button class='cancel mdl-button mdl-js-button mdl-js-ripple-effect' tabindex='3'>{{cancel}}</button>";
                     this.dialogs.input = "<div class='mdl-textfield mdl-js-textfield'><input class='mdl-textfield__input'><label class='md-textfield__label'></label></div>";
                     break;
                 case "angular-material":
-                    this.dialogs.buttons.ok = "<button class='ok md-primary md-button' tabindex='1'>{{ok}}</button>";
-                    this.dialogs.buttons.cancel = "<button class='cancel md-button' tabindex='2'>{{cancel}}</button>";
+                    this.dialogs.buttons.ok = "<button class='ok md-primary md-button' tabindex='2'>{{ok}}</button>";
+                    this.dialogs.buttons.cancel = "<button class='cancel md-button' tabindex='3'>{{cancel}}</button>";
                     this.dialogs.input = "<div layout='column'><md-input-container md-no-float><input type='text'></md-input-container></div>";
                     break;
                 case "default":
