@@ -321,7 +321,7 @@
 
                 // Attempt
                 if (form || input) {
-                    var formEls = form.querySelectorAll("input,select,textarea");
+                    var formEls = el.querySelectorAll("input,select,textarea");
                     for (var i = 0; i < formEls.length; i++) {
                         if (!formEls[i].hasAttribute("tabindex")) {
                             formEls[i].setAttribute("tabindex", "1");
@@ -423,7 +423,7 @@
                 setTimeout(function () {
                     el.classList.remove("hide");
                     if (form) {
-                        var input = form.querySelector("input,select,textarea");
+                        input = form.querySelector("input,select,textarea");
                         input.select();
                         input.focus();
                     } else if (input) {
